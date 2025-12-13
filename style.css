@@ -335,6 +335,35 @@ section {
     color: var(--accent);
 }
 
+/* Custom List */
+.custom-list {
+    list-style: none;
+    padding: 0;
+}
+
+.custom-list li {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-list i {
+    color: var(--accent);
+}
+
+.text-accent {
+    color: var(--accent) !important;
+    font-size: 1.5rem !important;
+}
+
+.role-title {
+    font-style: italic;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
 .highlight-box {
     background: var(--bg-secondary);
     padding: 2rem;
