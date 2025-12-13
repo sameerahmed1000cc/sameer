@@ -53,20 +53,28 @@
     opacity: 1;
 }
 
-.quote-header {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--accent);
+#daily-quote {
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
     margin-bottom: 2rem;
+    line-height: 1.6;
+    color: #FDFDFD;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-#daily-quote {
-    font-size: 1.8rem;
-    font-weight: 300;
-    font-style: italic;
-    margin-bottom: 1.5rem;
-    line-height: 1.4;
+.quote-header {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--accent);
+    display: inline-block;
+    padding-bottom: 0.5rem;
 }
 
 .quote-author {

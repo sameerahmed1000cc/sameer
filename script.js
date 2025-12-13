@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const authorEl = document.getElementById('quote-author');
     const overlay = document.getElementById('portal-overlay');
     const enterBtn = document.getElementById('enter-btn');
+    const themeAudio = document.getElementById('theme-audio');
 
     // Random Shuffle Logic: Select a random quote every time the page is loaded/refreshed
     const quoteIndex = Math.floor(Math.random() * quotes.length);
@@ -72,6 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle Enter Click
     if (enterBtn) {
         enterBtn.addEventListener('click', () => {
+            // Play Theme Music
+            if (themeAudio) {
+                themeAudio.volume = 0.5; // Set volume to 50%
+                themeAudio.play().catch(error => {
+                    console.log("Audio play failed (browser policy):", error);
+                });
+            }
+
             overlay.classList.add('open');
             // Remove from DOM after animation to improve performance
             setTimeout(() => {
