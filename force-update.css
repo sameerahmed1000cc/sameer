@@ -1,0 +1,4 @@
+/* Forcing cache bust for new release */
+:root {
+    --version: '2.0.0-premium';
+}
