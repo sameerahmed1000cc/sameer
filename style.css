@@ -1,13 +1,13 @@
 :root {
-    --bg-primary: #0f172a;
-    --bg-secondary: #1e293b;
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
-    --accent: #38bdf8;
-    --accent-glow: rgba(56, 189, 248, 0.3);
-    --glass-bg: rgba(30, 41, 59, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --gradient-primary: linear-gradient(135deg, #38bdf8 0%, #3b82f6 100%);
+    --bg-primary: #050505;
+    --bg-secondary: #121212;
+    --text-primary: #FDFDFD;
+    --text-secondary: #E0E0E0;
+    --accent: #D4AF37;
+    --accent-glow: rgba(212, 175, 55, 0.25);
+    --glass-bg: rgba(20, 20, 20, 0.85);
+    --glass-border: rgba(212, 175, 55, 0.2);
+    --gradient-primary: linear-gradient(135deg, #BF953F 0%, #FCF6BA 40%, #B38728 80%, #FBF5B7 100%);
 }
 
 * {
@@ -217,8 +217,8 @@ section {
     border-radius: 20px;
     position: relative;
     z-index: 2;
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 0 50px rgba(56, 189, 248, 0.2);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.15);
 }
 
 .profile-glow {
