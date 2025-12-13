@@ -1,4 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- Portal & Daily Quote Logic ---
+    const quotes = [
+        { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+        { text: "Customer service is not a department, it's an attitude.", author: "Unknown" },
+        { text: "Quality means doing it right when no one is looking.", author: "Henry Ford" },
+        { text: "Success is not final, failure is not fatal: It is the courage to continue that counts.", author: "Winston Churchill" },
+        { text: "Your most unhappy customers are your greatest source of learning.", author: "Bill Gates" },
+        { text: "Excellence is not a skill, it’s an attitude.", author: "Ralph Marston" },
+        { text: "To give real service you must add something which cannot be bought or measured with money, and that is sincerity and integrity.", author: "Douglas Adams" }
+    ];
+
+    const quoteEl = document.getElementById('daily-quote');
+    const authorEl = document.getElementById('quote-author');
+    const overlay = document.getElementById('portal-overlay');
+    const enterBtn = document.getElementById('enter-btn');
+
+    // Select Quote based on Day of Year to ensure it changes daily automatically
+    const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+    const quoteIndex = dayOfYear % quotes.length;
+    const todayQuote = quotes[quoteIndex];
+
+    if (quoteEl) {
+        quoteEl.textContent = `"${todayQuote.text}"`;
+        authorEl.textContent = `- ${todayQuote.author}`;
+    }
+
+    // Handle Enter Click
+    if (enterBtn) {
+        enterBtn.addEventListener('click', () => {
+            overlay.classList.add('open');
+            // Remove from DOM after animation to improve performance
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 1500);
+        });
+    }
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
