@@ -211,6 +211,60 @@ section {
     z-index: 10;
 }
 
+/* 3D Live Clock Styles */
+#live-clock-container {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    z-index: 100;
+    writing-mode: vertical-rl;
+    /* Vertical orientation for stylish look */
+    text-orientation: mixed;
+    padding: 15px 10px;
+    background: rgba(20, 20, 20, 0.4);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+#live-clock-container:hover {
+    transform: translateY(-50%) scale(1.05) perspective(1000px) rotateY(10deg);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.clock-time {
+    font-family: 'Cinzel', serif;
+    /* Matching the Quote font */
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px var(--accent-glow);
+    letter-spacing: 2px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Make it horizontal on mobile */
+@media (max-width: 768px) {
+    #live-clock-container {
+        top: auto;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        writing-mode: horizontal-tb;
+        border-radius: 30px;
+        padding: 5px 20px;
+    }
+
+    #live-clock-container:hover {
+        transform: translateX(-50%) scale(1.05);
+    }
+}
+
 /* Specific tilt for Floating Stats to prevent them from moving too much */
 .stat-float:hover {
     transform: translateY(-5px) scale(1.1);

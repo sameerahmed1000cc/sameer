@@ -109,6 +109,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500);
         });
     }
+
+    // --- Live 3D Clock Logic ---
+    function updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+
+        const hEl = document.getElementById('clock-hours');
+        const mEl = document.getElementById('clock-minutes');
+        const sEl = document.getElementById('clock-seconds');
+        const apEl = document.getElementById('clock-ampm');
+
+        if (hEl) hEl.textContent = hours;
+        if (mEl) mEl.textContent = minutes;
+        if (sEl) sEl.textContent = seconds;
+        if (apEl) apEl.textContent = ampm;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock(); // Initial call
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
