@@ -89,6 +89,21 @@
     padding: 1rem 3rem;
     transition: all 0.3s ease;
     cursor: pointer;
+    background: linear-gradient(135deg, #d32f2f 0%, #ff6b35 100%);
+    border: none;
+    color: white;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 4px 20px rgba(211, 47, 47, 0.4);
+}
+
+#enter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(211, 47, 47, 0.6);
+}
+
+#enter-btn:active {
+    transform: translateY(0);
 }
 
 /* Animation States */

@@ -94,12 +94,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle Enter Click
     if (enterBtn) {
         enterBtn.addEventListener('click', () => {
-            // Play Theme Music
-            if (themeAudio) {
-                themeAudio.volume = 0.4; // Slightly lower volume for background
-                themeAudio.play().catch(error => {
-                    console.log("Audio play failed (browser policy):", error);
+            // Play Bike Sound First
+            const portalSound = document.getElementById('portal-sound');
+            if (portalSound) {
+                portalSound.volume = 0.7;
+                portalSound.play().catch(error => {
+                    console.log("Portal sound play failed:", error);
                 });
+            }
+
+            // Play Theme Music after a short delay
+            if (themeAudio) {
+                setTimeout(() => {
+                    themeAudio.volume = 0.4;
+                    themeAudio.play().catch(error => {
+                        console.log("Audio play failed (browser policy):", error);
+                    });
+                }, 500);
             }
 
             overlay.classList.add('open');
