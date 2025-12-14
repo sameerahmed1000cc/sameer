@@ -40,6 +40,88 @@ body {
 }
 
 /* ===================================
+   STICKY HEADER (Liquid Glass Effect)
+   =================================== */
+
+.sticky-header {
+    position: fixed;
+    top: -80px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    padding: 0.75rem 1rem;
+    background: rgba(26, 26, 26, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(211, 47, 47, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        background 0.3s ease;
+}
+
+.sticky-header.visible {
+    transform: translateY(80px);
+}
+
+.sticky-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+            rgba(211, 47, 47, 0.1) 0%,
+            rgba(255, 107, 53, 0.05) 50%,
+            rgba(211, 47, 47, 0.1) 100%);
+    opacity: 0.5;
+    z-index: -1;
+    animation: liquidFlow 8s ease-in-out infinite;
+}
+
+@keyframes liquidFlow {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+        opacity: 0.5;
+    }
+
+    50% {
+        background-position: 100% 50%;
+        opacity: 0.7;
+    }
+}
+
+.sticky-header-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.sticky-profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 15px rgba(211, 47, 47, 0.5);
+}
+
+.sticky-name {
+    font-size: 1rem;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+
+/* ===================================
    MOBILE CONTAINER
    =================================== */
 

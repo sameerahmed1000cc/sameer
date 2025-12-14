@@ -23,6 +23,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 item.classList.add('active');
             }
         });
+
+        // Sticky Header Show/Hide
+        const stickyHeader = document.getElementById('sticky-header');
+        if (stickyHeader) {
+            if (window.pageYOffset > 300) {
+                stickyHeader.classList.add('visible');
+            } else {
+                stickyHeader.classList.remove('visible');
+            }
+        }
     });
 
     // Smooth Scroll for Navigation
