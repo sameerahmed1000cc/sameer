@@ -219,6 +219,8 @@ section {
     z-index: 2;
     border: 2px solid var(--accent);
     box-shadow: 0 0 50px rgba(212, 175, 55, 0.15);
+    filter: brightness(1.2) contrast(1.1);
+    /* Enhanced Brightness */
 }
 
 .profile-glow {
@@ -228,6 +230,24 @@ section {
     background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
     z-index: 1;
     animation: pulse 4s infinite ease-in-out;
+}
+
+/* Portal Overlay Styles */
+.portal-door {
+    background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
+    /* Gray and Black Fade */
+}
+
+.portal-clock {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    z-index: 10;
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    letter-spacing: 2px;
 }
 
 .stat-float {

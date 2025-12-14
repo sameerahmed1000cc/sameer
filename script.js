@@ -61,6 +61,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const enterBtn = document.getElementById('enter-btn');
     const themeAudio = document.getElementById('theme-audio');
 
+    // --- Live Clock Logic ---
+    function updateClock() {
+        const now = new Date();
+        const hrs = String(now.getHours()).padStart(2, '0');
+        const mins = String(now.getMinutes()).padStart(2, '0');
+        const secs = String(now.getSeconds()).padStart(2, '0');
+        const clockEl = document.getElementById('live-clock');
+        if (clockEl) {
+            clockEl.textContent = `${hrs}:${mins}:${secs}`;
+        }
+    }
+    setInterval(updateClock, 1000);
+    updateClock(); // Initial call
+
     // Random Shuffle Logic: Select a random quote every time the page is loaded/refreshed
     const quoteIndex = Math.floor(Math.random() * quotes.length);
     const todayQuote = quotes[quoteIndex];
