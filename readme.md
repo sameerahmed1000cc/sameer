@@ -1,6 +1,6 @@
 # Virtual Relationship Manager Portfolio
 
-Professional portfolio website for Aifaz Khan, Senior Customer Support Executive and Virtual Relationship Manager.
+Professional portfolio website for SAMEER AHMED, Senior Customer Support Executive and Virtual Relationship Manager.
 
 ## Features
 - Premium Dark Mode Design
