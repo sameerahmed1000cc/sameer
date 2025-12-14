@@ -627,6 +627,43 @@ section {
     width: 100%;
 }
 
+/* Instagram Feed Section */
+.instagram-feed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.instagram-embed-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.instagram-media {
+    margin: 0 auto !important;
+}
+
+.instagram-cta {
+    text-align: center;
+}
+
+.instagram-cta .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+}
+
+.instagram-cta .btn-primary i {
+    font-size: 1.3rem;
+}
+
+
 footer {
     text-align: center;
     padding: 2rem;
