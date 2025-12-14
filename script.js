@@ -62,14 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeAudio = document.getElementById('theme-audio');
 
     // --- Live Clock Logic ---
+    // --- Live Clock Logic ---
     function updateClock() {
         const now = new Date();
-        const hrs = String(now.getHours()).padStart(2, '0');
+        let hrs = now.getHours();
+        const ampm = hrs >= 12 ? 'PM' : 'AM';
+        hrs = hrs % 12;
+        hrs = hrs ? hrs : 12; // the hour '0' should be '12'
         const mins = String(now.getMinutes()).padStart(2, '0');
         const secs = String(now.getSeconds()).padStart(2, '0');
         const clockEl = document.getElementById('live-clock');
         if (clockEl) {
-            clockEl.textContent = `${hrs}:${mins}:${secs}`;
+            clockEl.textContent = `${hrs}:${mins}:${secs} ${ampm}`;
         }
     }
     setInterval(updateClock, 1000);
