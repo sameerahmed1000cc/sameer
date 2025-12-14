@@ -94,55 +94,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle Enter Click
     if (enterBtn) {
         enterBtn.addEventListener('click', () => {
-            // Create motorcycle engine sound effect
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            // Play real motorcycle engine sound
+            const bikeSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2498/2498-preview.mp3');
+            bikeSound.volume = 0.8;
+            bikeSound.play().catch(error => {
+                console.log("Bike sound play failed:", error);
+                // Fallback: try alternative sound
+                const fallbackSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2494/2494-preview.mp3');
+                fallbackSound.volume = 0.8;
+                fallbackSound.play().catch(err => console.log("Fallback sound failed:", err));
+            });
 
-            // Create oscillators for engine sound
-            const oscillator1 = audioContext.createOscillator();
-            const oscillator2 = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-
-            // Configure oscillators for motorcycle engine sound
-            oscillator1.type = 'sawtooth';
-            oscillator2.type = 'square';
-            oscillator1.frequency.setValueAtTime(80, audioContext.currentTime); // Base frequency
-            oscillator2.frequency.setValueAtTime(160, audioContext.currentTime); // Harmonic
-
-            // Connect nodes
-            oscillator1.connect(gainNode);
-            oscillator2.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-
-            // Set initial volume
-            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-
-            // Create revving effect
-            const now = audioContext.currentTime;
-
-            // Rev up
-            oscillator1.frequency.exponentialRampToValueAtTime(200, now + 0.3);
-            oscillator2.frequency.exponentialRampToValueAtTime(400, now + 0.3);
-            gainNode.gain.linearRampToValueAtTime(0.8, now + 0.1);
-            gainNode.gain.linearRampToValueAtTime(1.0, now + 0.3);
-
-            // Peak rev
-            oscillator1.frequency.exponentialRampToValueAtTime(300, now + 0.6);
-            oscillator2.frequency.exponentialRampToValueAtTime(600, now + 0.6);
-
-            // Rev down
-            oscillator1.frequency.exponentialRampToValueAtTime(100, now + 1.2);
-            oscillator2.frequency.exponentialRampToValueAtTime(200, now + 1.2);
-            gainNode.gain.linearRampToValueAtTime(0, now + 1.5);
-
-            // Start and stop
-            oscillator1.start(now);
-            oscillator2.start(now);
-            oscillator1.stop(now + 1.5);
-            oscillator2.stop(now + 1.5);
-
-            // Play Theme Music (if exists)
+            // Play Theme Music (if exists) at lower volume
             if (themeAudio) {
-                themeAudio.volume = 0.2; // Lower volume for background
+                themeAudio.volume = 0.15; // Very low volume for background
                 themeAudio.play().catch(error => {
                     console.log("Audio play failed (browser policy):", error);
                 });
@@ -152,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Remove from DOM after animation to improve performance
             setTimeout(() => {
                 overlay.style.display = 'none';
-            }, 1500);
+            }, 2000); // Increased to 2s for smoother experience
         });
     }
 
