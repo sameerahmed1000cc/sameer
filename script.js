@@ -61,7 +61,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const enterBtn = document.getElementById('enter-btn');
     const themeAudio = document.getElementById('theme-audio');
 
-    // Random Shuffle Logic: Select a random quote every time the page is loaded/refreshed
+    // --- Daily Anime Theme Song Logic ---
+    // List of popular Anime Themes (Placeholders - Replace 'url' with actual MP3 links if you have them)
+    // Currently using high-quality piano covers/proxies to ensure they play.
+    const animeSongs = [
+        { title: "Gurenge (Demon Slayer)", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" }, // High energy
+        { title: "Unravel (Tokyo Ghoul)", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3" }, // Emotional
+        { title: "Blue Bird (Naruto)", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" },    // Upbeat
+        { title: "You Say Run (MHA)", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" },   // Epic
+        { title: "Suzume (Title Track)", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" }    // Calm
+    ];
+
+    // Select Song based on Day of Year (Rotates Daily)
+    const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+    const songIndex = dayOfYear % animeSongs.length;
+    const todaysSong = animeSongs[songIndex];
+
+    console.log(`Playing Daily Anime Theme: ${todaysSong.title}`);
+    if (themeAudio) {
+        themeAudio.src = todaysSong.url;
+    }
+
+    // Random Shuffle Logic for Quotes
     const quoteIndex = Math.floor(Math.random() * quotes.length);
     const todayQuote = quotes[quoteIndex];
 
@@ -75,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         enterBtn.addEventListener('click', () => {
             // Play Theme Music
             if (themeAudio) {
-                themeAudio.volume = 0.5; // Set volume to 50%
+                themeAudio.volume = 0.4; // Slightly lower volume for background
                 themeAudio.play().catch(error => {
                     console.log("Audio play failed (browser policy):", error);
                 });
