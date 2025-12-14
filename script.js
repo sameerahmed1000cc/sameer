@@ -94,20 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle Enter Click
     if (enterBtn) {
         enterBtn.addEventListener('click', () => {
-            // Play real motorcycle engine sound
-            const bikeSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2498/2498-preview.mp3');
-            bikeSound.volume = 0.8;
-            bikeSound.play().catch(error => {
-                console.log("Bike sound play failed:", error);
-                // Fallback: try alternative sound
-                const fallbackSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2494/2494-preview.mp3');
-                fallbackSound.volume = 0.8;
-                fallbackSound.play().catch(err => console.log("Fallback sound failed:", err));
-            });
-
-            // Play Theme Music (if exists) at lower volume
+            // Play Theme Music
             if (themeAudio) {
-                themeAudio.volume = 0.15; // Very low volume for background
+                themeAudio.volume = 0.4; // Slightly lower volume for background
                 themeAudio.play().catch(error => {
                     console.log("Audio play failed (browser policy):", error);
                 });
@@ -117,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Remove from DOM after animation to improve performance
             setTimeout(() => {
                 overlay.style.display = 'none';
-            }, 2000); // Increased to 2s for smoother experience
+            }, 1500);
         });
     }
 
