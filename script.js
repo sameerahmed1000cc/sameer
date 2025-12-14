@@ -93,9 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
         enterBtn.addEventListener('click', () => {
             // Play Theme Music
             if (themeAudio) {
-                themeAudio.volume = 0.5; // Set volume to 50%
-                themeAudio.play().catch(error => {
-                    console.log("Audio play failed (browser policy):", error);
+                themeAudio.volume = 1.0; // Ensure max volume
+                themeAudio.play().then(() => {
+                    console.log("Audio playing successfully");
+                }).catch(error => {
+                    console.error("Audio play failed:", error);
+                    // If it fails, we can't do much without another user interaction, 
+                    // but logging helps debugging.
                 });
             }
 
