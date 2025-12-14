@@ -61,24 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const enterBtn = document.getElementById('enter-btn');
     const themeAudio = document.getElementById('theme-audio');
 
-    // --- Live Clock Logic ---
-    // --- Live Clock Logic ---
-    function updateClock() {
-        const now = new Date();
-        let hrs = now.getHours();
-        const ampm = hrs >= 12 ? 'PM' : 'AM';
-        hrs = hrs % 12;
-        hrs = hrs ? hrs : 12; // the hour '0' should be '12'
-        const mins = String(now.getMinutes()).padStart(2, '0');
-        const secs = String(now.getSeconds()).padStart(2, '0');
-        const clockEl = document.getElementById('live-clock');
-        if (clockEl) {
-            clockEl.textContent = `${hrs}:${mins}:${secs} ${ampm}`;
-        }
-    }
-    setInterval(updateClock, 1000);
-    updateClock(); // Initial call
-
     // Random Shuffle Logic: Select a random quote every time the page is loaded/refreshed
     const quoteIndex = Math.floor(Math.random() * quotes.length);
     const todayQuote = quotes[quoteIndex];
@@ -93,13 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
         enterBtn.addEventListener('click', () => {
             // Play Theme Music
             if (themeAudio) {
-                themeAudio.volume = 1.0; // Ensure max volume
-                themeAudio.play().then(() => {
-                    console.log("Audio playing successfully");
-                }).catch(error => {
-                    console.error("Audio play failed:", error);
-                    // If it fails, we can't do much without another user interaction, 
-                    // but logging helps debugging.
+                themeAudio.volume = 0.5; // Set volume to 50%
+                themeAudio.play().catch(error => {
+                    console.log("Audio play failed (browser policy):", error);
                 });
             }
 
@@ -147,33 +125,5 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'all 0.6s ease-out';
         observer.observe(el);
-    });
-    // --- 3D Tilt Effect ---
-    const cards = document.querySelectorAll('.glass-card, .service-item, .skill-card, .about-text');
-
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const rotateX = ((y - centerY) / centerY) * -10; // Max rotation deg
-            const rotateY = ((x - centerX) / centerX) * 10;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-        });
-
-        // Add transition for smooth reset
-        card.style.transition = 'transform 0.1s ease';
-        card.addEventListener('mouseenter', () => {
-            card.style.transition = 'none'; // Remove transition for instant follow
-        });
     });
 });
