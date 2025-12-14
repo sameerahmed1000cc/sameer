@@ -10,6 +10,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    background: #000;
 }
 
 .portal-door {
@@ -17,23 +18,26 @@
     top: 0;
     width: 50%;
     height: 100%;
-    background: var(--bg-primary);
     z-index: 1;
     transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-    border-right: 1px solid var(--accent-glow);
+    background-size: cover;
+    background-position: center;
 }
 
 .portal-door.left {
     left: 0;
     transform-origin: left;
-    border-right: 1px solid var(--glass-border);
+    background-image: url('assets/portal-bg-1.jpg');
+    border-right: 3px solid var(--accent);
+    box-shadow: inset -20px 0 50px rgba(211, 47, 47, 0.5), 0 0 30px rgba(211, 47, 47, 0.3);
 }
 
 .portal-door.right {
     right: 0;
     transform-origin: right;
-    border-left: 1px solid var(--glass-border);
+    background-image: url('assets/portal-bg-2.jpg');
+    border-left: 3px solid var(--accent);
+    box-shadow: inset 20px 0 50px rgba(211, 47, 47, 0.5), 0 0 30px rgba(211, 47, 47, 0.3);
 }
 
 .quote-container {

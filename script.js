@@ -94,9 +94,55 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle Enter Click
     if (enterBtn) {
         enterBtn.addEventListener('click', () => {
-            // Play Theme Music
+            // Create motorcycle engine sound effect
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+            // Create oscillators for engine sound
+            const oscillator1 = audioContext.createOscillator();
+            const oscillator2 = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            // Configure oscillators for motorcycle engine sound
+            oscillator1.type = 'sawtooth';
+            oscillator2.type = 'square';
+            oscillator1.frequency.setValueAtTime(80, audioContext.currentTime); // Base frequency
+            oscillator2.frequency.setValueAtTime(160, audioContext.currentTime); // Harmonic
+
+            // Connect nodes
+            oscillator1.connect(gainNode);
+            oscillator2.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            // Set initial volume
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+
+            // Create revving effect
+            const now = audioContext.currentTime;
+
+            // Rev up
+            oscillator1.frequency.exponentialRampToValueAtTime(200, now + 0.3);
+            oscillator2.frequency.exponentialRampToValueAtTime(400, now + 0.3);
+            gainNode.gain.linearRampToValueAtTime(0.8, now + 0.1);
+            gainNode.gain.linearRampToValueAtTime(1.0, now + 0.3);
+
+            // Peak rev
+            oscillator1.frequency.exponentialRampToValueAtTime(300, now + 0.6);
+            oscillator2.frequency.exponentialRampToValueAtTime(600, now + 0.6);
+
+            // Rev down
+            oscillator1.frequency.exponentialRampToValueAtTime(100, now + 1.2);
+            oscillator2.frequency.exponentialRampToValueAtTime(200, now + 1.2);
+            gainNode.gain.linearRampToValueAtTime(0, now + 1.5);
+
+            // Start and stop
+            oscillator1.start(now);
+            oscillator2.start(now);
+            oscillator1.stop(now + 1.5);
+            oscillator2.stop(now + 1.5);
+
+            // Play Theme Music (if exists)
             if (themeAudio) {
-                themeAudio.volume = 0.4; // Slightly lower volume for background
+                themeAudio.volume = 0.2; // Lower volume for background
                 themeAudio.play().catch(error => {
                     console.log("Audio play failed (browser policy):", error);
                 });
