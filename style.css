@@ -191,14 +191,31 @@ section {
     position: relative;
 }
 
-.glass-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(20px);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+/* 3D Tilt Hover Effects */
+.glass-card,
+.skill-card,
+.service-item,
+.highlight-box {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backface-visibility: hidden;
+}
+
+.glass-card:hover,
+.skill-card:hover,
+.service-item:hover,
+.highlight-box:hover {
+    transform: translateY(-10px) perspective(1000px) rotateX(4deg) scale(1.02);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+    /* Gold Glow */
+    border: 1px solid var(--accent);
+    z-index: 10;
+}
+
+/* Specific tilt for Floating Stats to prevent them from moving too much */
+.stat-float:hover {
+    transform: translateY(-5px) scale(1.1);
+    animation-play-state: paused;
+    /* Stop floating when hovered to focus */
 }
 
 .profile-container {
